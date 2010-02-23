@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:pretty="http://ocpsoft.com/prettyfaces">
+
+    <head>
+        <title><ui:insert name="title">Dasient Integration</ui:insert></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <a4j:loadScript src="resource://jquery.js"/>
+    </head>
+
+    <body>
+        <f:view>
+            <style type="text/css">
+                .crumb-left {
+                    text-align: left;
+                }
+                .crumb-right {
+                    text-align: right;
+                }
+            </style>
+
+            <h:panelGrid columns="2" width="100%" columnClasses="crumb-left,crumb-right">
+                <ui:include src="breadcrumb.xhtml"/>
+
+                <t:div rendered="#{identitySupportBean.loggedIn}">
+                    <h:outputText value="Welcome #{identitySupportBean.username}"/>
+                    <h:form id="logoutForm">
+                        <h:commandLink action="#{logoutControllerBean.logout}" value="Logout"/>
+                    </h:form>
+                </t:div>
+            </h:panelGrid>
+
+            <ui:insert name="body"/>
+
+            <ui:debug />
+        </f:view>
+    </body>
+
+</html>

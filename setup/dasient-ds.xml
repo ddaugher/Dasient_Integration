@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE datasources
+PUBLIC "-//JBoss//DTD JBOSS JCA Config 5.0//EN"
+"http://www.jboss.org/j2ee/dtd/jboss-ds_5_0.dtd">
+<datasources>
+    <local-tx-datasource>
+        <jndi-name>DasientDS</jndi-name>
+        <connection-url>jdbc:postgresql://localhost/dasient</connection-url>
+        <driver-class>org.postgresql.Driver</driver-class>
+        <user-name>dasient</user-name>
+        <password>dasient</password>
+        <new-connection-sql>select 1</new-connection-sql>
+        <check-valid-connection-sql>select 1</check-valid-connection-sql>
+     </local-tx-datasource>
+</datasources>

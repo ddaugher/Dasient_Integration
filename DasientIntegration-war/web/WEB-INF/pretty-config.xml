@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config
+	xmlns="http://ocpsoft.com/prettyfaces-xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.com/prettyfaces-xsd
+    http://ocpsoft.com/xml/ns/prettyfaces/pretty-1.0.xsd">
+
+	<url-mapping id="home">
+		<pattern>/home</pattern>
+		<view-id>/index.jsf</view-id>
+	</url-mapping>
+
+    <url-mapping id="ruleEditor">
+		<pattern>/ui/ruleEditor</pattern>
+		<view-id>/faces/ruleEditor/listRules.jsf</view-id>
+        <action onPostback="false">#{listRulesBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{listRulesBackingBean.loadRules}</action>
+	</url-mapping>
+
+	<url-mapping id="listRules">
+		<pattern>/ui/ruleEditor/rules</pattern>
+		<view-id>/faces/ruleEditor/listRules.jsf</view-id>
+        <action onPostback="false">#{listRulesBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{listRulesBackingBean.loadRules}</action>
+	</url-mapping>
+
+	<url-mapping id="listAllRules">
+		<pattern>/ui/ruleEditor/rules/all</pattern>
+		<view-id>/faces/ruleEditor/listRules.jsf</view-id>
+        <action onPostback="false">#{listRulesParameters.setShowAllToTrue}</action>
+        <action onPostback="false">#{listRulesBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{listRulesBackingBean.loadRules}</action>
+	</url-mapping>
+
+    <url-mapping id="listRulesByRevision">
+		<pattern>/ui/ruleEditor/rules/revision/#{listRulesParameters.revisionId}</pattern>
+		<view-id>/faces/ruleEditor/listRules.jsf</view-id>
+        <action onPostback="false">#{listRulesBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{listRulesBackingBean.loadRules}</action>
+	</url-mapping>
+
+	<url-mapping id="listAllRulesByRevision">
+		<pattern>/ui/ruleEditor/rules/revision/#{listRulesParameters.revisionId}/all</pattern>
+		<view-id>/faces/ruleEditor/listRules.jsf</view-id>
+        <action onPostback="false">#{listRulesParameters.setShowAllToTrue}</action>
+        <action onPostback="false">#{listRulesBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{listRulesBackingBean.loadRules}</action>
+	</url-mapping>
+
+    <url-mapping id="createRule">
+		<pattern>/ui/ruleEditor/create/rule</pattern>
+		<view-id>/faces/ruleEditor/createRule.jsf</view-id>
+        <action onPostback="false">#{createRuleBreadCrumb.createCrumb}</action>
+	</url-mapping>
+
+    <url-mapping id="readRule">
+		<pattern>/ui/ruleEditor/rule/#{readRuleParameters.ruleId}</pattern>
+		<view-id>/faces/ruleEditor/readRule.jsf</view-id>
+        <action onPostback="false">#{readRuleBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{readRuleBackingBean.loadRule}</action>
+	</url-mapping>
+
+    <url-mapping id="readRuleByRevision">
+		<pattern>/ui/ruleEditor/rule/#{readRuleParameters.ruleId}/revision/#{readRuleParameters.revisionId}</pattern>
+		<view-id>/faces/ruleEditor/readRule.jsf</view-id>
+        <action onPostback="false">#{readRuleBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{readRuleBackingBean.loadRule}</action>
+	</url-mapping>
+
+    <url-mapping id="ruleHistory">
+		<pattern>/ui/ruleEditor/rule/#{ruleHistoryParameters.ruleId}/history</pattern>
+		<view-id>/faces/ruleEditor/ruleHistory.jsf</view-id>
+        <action onPostback="false">#{ruleHistoryBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{ruleHistoryBackingBean.loadHistory}</action>
+	</url-mapping>
+
+	<url-mapping id="updateRule">
+		<pattern>/ui/ruleEditor/rule/#{updateRuleParameters.ruleId}/update</pattern>
+		<view-id>/faces/ruleEditor/updateRule.jsf</view-id>
+        <action onPostback="false">#{updateRuleBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{updateRuleBackingBean.loadRule}</action>
+	</url-mapping>
+
+	<url-mapping id="resurrectRule">
+		<pattern>/ui/ruleEditor/rule/#{resurrectRuleParameters.ruleId}/resurrect</pattern>
+		<view-id>/faces/ruleEditor/resurrectRule.jsf</view-id>
+        <action onPostback="false">#{resurrectRuleBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{resurrectRuleBackingBean.loadRule}</action>
+	</url-mapping>
+
+    <url-mapping id="deleteRule">
+		<pattern>/ui/ruleEditor/rule/#{deleteRuleParameters.ruleId}/delete</pattern>
+		<view-id>/faces/ruleEditor/deleteRule.jsf</view-id>
+        <action onPostback="false">#{deleteRuleBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{deleteRuleBackingBean.loadRule}</action>
+	</url-mapping>
+
+    <url-mapping id="listRevisions">
+		<pattern>/ui/ruleEditor/revisions</pattern>
+		<view-id>/faces/ruleEditor/listRevisions.jsf</view-id>
+        <action onPostback="false">#{listRevisionsBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{listRevisionsBackingBean.loadHistory}</action>
+	</url-mapping>
+
+    <url-mapping id="readRevision">
+		<pattern>/ui/ruleEditor/revision/#{readRevisionParameters.revisionId}</pattern>
+		<view-id>/faces/ruleEditor/readRevision.jsf</view-id>
+        <action onPostback="false">#{readRevisionBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{readRevisionBackingBean.loadRevision}</action>
+	</url-mapping>
+
+	<url-mapping id="listAuthors">
+		<pattern>/ui/ruleEditor/authors</pattern>
+		<view-id>/faces/ruleEditor/listAuthors.jsf</view-id>
+        <action onPostback="false">#{listAuthorsBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{listAuthorsBackingBean.loadAuthors}</action>
+	</url-mapping>
+
+    <url-mapping id="readAuthor">
+		<pattern>/ui/ruleEditor/author/#{readAuthorParameters.author}</pattern>
+		<view-id>/faces/ruleEditor/readAuthor.jsf</view-id>
+        <action onPostback="false">#{readAuthorBreadCrumb.createCrumb}</action>
+        <action onPostback="false">#{readAuthorBackingBean.loadAuthor}</action>
+	</url-mapping>
+
+</pretty-config>

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:pretty="http://ocpsoft.com/prettyfaces"
+                template="../template.xhtml">
+    
+    <ui:define name="body">
+
+        <t:div>
+            <h:outputText rendered="#{readRuleModelBean.deleted}" value="NOTE: This rule is deleted" style="color: red"/>
+        </t:div>
+
+        <h:panelGrid columns="2">
+            <h:outputLabel for="ruleId" value="Rule ID"/>
+            <h:outputText id="ruleId" value="#{readRuleModelBean.ruleId}"/>
+
+            <h:outputLabel for="revisionId" value="Revision ID"/>
+            <h:outputText id="revisionId" value="#{readRuleModelBean.revisionId}"/>
+
+            <h:outputLabel for="description" value="Description"/>
+            <h:outputText id="description" value="#{readRuleModelBean.description}"/>
+
+            <h:outputLabel for="action" value="Action"/>
+            <h:outputText id="action" value="#{readRuleModelBean.action}"/>
+
+            <h:outputLabel for="pattern1" value="Pattern1"/>
+            <h:outputText id="pattern1" value="#{readRuleModelBean.pattern1}"/>
+
+            <h:outputLabel for="pattern2" value="Pattern2"/>
+            <h:outputText id="pattern2" value="#{readRuleModelBean.pattern2}"/>
+
+            <h:outputLabel for="pattern3" value="Pattern3"/>
+            <h:outputText id="pattern3" value="#{readRuleModelBean.pattern3}"/>
+
+            <h:outputLabel for="pattern4" value="Pattern4"/>
+            <h:outputText id="pattern4" value="#{readRuleModelBean.pattern4}"/>
+
+            <h:outputLabel for="pattern5" value="Pattern5"/>
+            <h:outputText id="pattern5" value="#{readRuleModelBean.pattern5}"/>
+
+            <h:outputLabel for="pattern6" value="Pattern6"/>
+            <h:outputText id="pattern6" value="#{readRuleModelBean.pattern6}"/>
+        </h:panelGrid>
+
+        <t:div>
+            <h:panelGroup rendered="#{readRuleModelBean.currentRevision}">
+                <h:panelGroup rendered="#{!readRuleModelBean.deleted}">
+                    <pretty:link mappingId="updateRule">
+                        <f:param value="#{readRuleModelBean.ruleId}"/>
+                        <h:outputText value="Update"/>
+                    </pretty:link>
+                    <h:outputText value=" | "/>
+                    <pretty:link mappingId="deleteRule">
+                        <f:param value="#{readRuleModelBean.ruleId}"/>
+                        <h:outputText value="Delete"/>
+                    </pretty:link>
+                    <h:outputText value=" | "/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{readRuleModelBean.deleted}">
+                    <pretty:link mappingId="resurrectRule">
+                        <f:param value="#{readRuleModelBean.ruleId}"/>
+                        <h:outputText value="Resurrect"/>
+                    </pretty:link>
+                    <h:outputText value=" | "/>
+                </h:panelGroup>
+            </h:panelGroup>
+
+            <pretty:link mappingId="ruleHistory">
+                <f:param value="#{readRuleModelBean.ruleId}"/>
+                <h:outputText value="History"/>
+            </pretty:link>
+
+            <h:panelGroup rendered="#{readRuleModelBean.preceedingRevisionId != null}">
+                <h:outputText value=" | "/>
+                <pretty:link mappingId="readRuleByRevision">
+                    <f:param value="#{readRuleModelBean.ruleId}"/>
+                    <f:param value="#{readRuleModelBean.preceedingRevisionId}"/>
+                    <h:outputText value="Preceeding"/>
+                </pretty:link>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{readRuleModelBean.succeedingRevisionId != null}">
+                <h:outputText value=" | "/>
+                <pretty:link mappingId="readRuleByRevision">
+                    <f:param value="#{readRuleModelBean.ruleId}"/>
+                    <f:param value="#{readRuleModelBean.succeedingRevisionId}"/>
+                    <h:outputText value="Succeeding"/>
+                </pretty:link>
+            </h:panelGroup>
+        </t:div>
+
+    </ui:define>
+
+</ui:composition>

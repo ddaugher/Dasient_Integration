@@ -1,0 +1,595 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="1.2" 
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+
+    <application>
+        <view-handler>
+            com.sun.facelets.FaceletViewHandler
+        </view-handler>
+    </application>
+
+	<lifecycle>
+		<phase-listener>
+			com.ocpsoft.pretty.application.MultiPageMessagesSupport
+		</phase-listener>
+	</lifecycle>
+
+    <managed-bean>
+        <managed-bean-name>cleanBroker</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.web.CleanBrokerJsfBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/ui/listQueue.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>requestAdded</from-outcome>
+            <to-view-id>/ui/listQueue.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <!--
+      Login / Logout
+    -->
+
+    <managed-bean>
+        <managed-bean-name>identitySupportBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.IdentitySupportBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>logoutControllerBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.LogoutControllerBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <!--
+      Bread Crumb
+    -->
+
+    <managed-bean>
+        <managed-bean-name>breadCrumbModel</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.BreadCrumbModel</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <!--
+      Rule Editor
+    -->
+
+    <managed-bean>
+        <managed-bean-name>ruleSetBusinessBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.RuleSetBusinessBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>ruleActionSupportBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.RuleActionSupportBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>listRulesParameters</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ListRulesParameters</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>listRulesBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ListRulesBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{listRulesParameters}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>listRulesModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ListRulesModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>listRulesBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ListRulesBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{listRulesParameters}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{listRulesModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readRuleParameters</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadRuleParameters</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readRuleBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadRuleBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{readRuleParameters}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readRuleModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadRuleModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readRuleBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadRuleBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{readRuleParameters}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{readRuleModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>createRuleBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.CreateRuleBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>createRuleModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.CreateRuleModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>createRuleBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.CreateRuleBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{createRuleModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>createRuleControllerBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.CreateRuleControllerBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>identityBean</property-name>
+            <value>#{identitySupportBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{createRuleModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>updateRuleParameters</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.UpdateRuleParameters</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>updateRuleBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.UpdateRuleBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{updateRuleParameters}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>updateRuleModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.UpdateRuleModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>updateRuleBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.UpdateRuleBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{updateRuleParameters}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{updateRuleModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>updateRuleControllerBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.UpdateRuleControllerBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>identityBean</property-name>
+            <value>#{identitySupportBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{updateRuleModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>deleteRuleParameters</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.DeleteRuleParameters</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>deleteRuleBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.DeleteRuleBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{deleteRuleParameters}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>deleteRuleModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.DeleteRuleModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>deleteRuleBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.DeleteRuleBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{deleteRuleParameters}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{deleteRuleModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>deleteRuleControllerBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.DeleteRuleControllerBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>identityBean</property-name>
+            <value>#{identitySupportBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{deleteRuleModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>resurrectRuleParameters</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ResurrectRuleParameters</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>resurrectRuleBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ResurrectRuleBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{resurrectRuleParameters}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>resurrectRuleModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ResurrectRuleModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>resurrectRuleBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ResurrectRuleBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{resurrectRuleParameters}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{resurrectRuleModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>resurrectRuleControllerBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ResurrectRuleControllerBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>identityBean</property-name>
+            <value>#{identitySupportBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{resurrectRuleModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>listRevisionsBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ListRevisionsBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>listRevisionsModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ListRevisionsModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>listRevisionsBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ListRevisionsBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{listRevisionsModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readRevisionParameters</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadRevisionParameters</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readRevisionBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadRevisionBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{readRevisionParameters}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readRevisionModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadRevisionModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readRevisionBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadRevisionBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{readRevisionParameters}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{readRevisionModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>ruleHistoryParameters</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.RuleHistoryParameters</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>ruleHistoryBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.RuleHistoryBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{ruleHistoryParameters}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>ruleHistoryModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.RuleHistoryModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>ruleHistoryBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.RuleHistoryBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{ruleHistoryParameters}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{ruleHistoryModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>listAuthorsBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ListAuthorsBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>listAuthorsModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ListAuthorsModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>listAuthorsBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ListAuthorsBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{listAuthorsModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readAuthorParameters</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadAuthorParameters</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readAuthorBreadCrumb</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadAuthorBreadCrumb</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>crumbModel</property-name>
+            <value>#{breadCrumbModel}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{readAuthorParameters}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readAuthorModelBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadAuthorModelBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>readAuthorBackingBean</managed-bean-name>
+        <managed-bean-class>com.ecommerce.dasient.jsf.ruleeditor.ReadAuthorBackingBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>ruleSetBean</property-name>
+            <value>#{ruleSetBusinessBean}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>params</property-name>
+            <value>#{readAuthorParameters}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>modelBean</property-name>
+            <value>#{readAuthorModelBean}</value>
+        </managed-property>
+    </managed-bean>
+
+</faces-config>
+

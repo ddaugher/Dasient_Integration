@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                template="../template.xhtml">
+
+    <ui:define name="body">
+        <h:messages showDetail="false" showSummary="true"/>
+
+        <h:form id="resurrectRuleForm">
+            <h:inputHidden id="ruleId" value="#{resurrectRuleModelBean.ruleId}"/>
+            <h:inputHidden id="revisionId" value="#{resurrectRuleModelBean.revisionId}"/>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="description" value="Description"/>
+                <h:outputText id="description" value="#{resurrectRuleModelBean.description}"/>
+
+                <h:outputLabel for="action" value="Action"/>
+                <h:outputText id="action" value="#{resurrectRuleModelBean.action}"/>
+
+                <h:outputLabel for="pattern1" value="Pattern1"/>
+                <h:outputText id="pattern1" value="#{resurrectRuleModelBean.pattern1}"/>
+
+                <h:outputLabel for="pattern2" value="Pattern2"/>
+                <h:outputText id="pattern2" value="#{resurrectRuleModelBean.pattern2}"/>
+
+                <h:outputLabel for="pattern3" value="Pattern3"/>
+                <h:outputText id="pattern3" value="#{resurrectRuleModelBean.pattern3}"/>
+
+                <h:outputLabel for="pattern4" value="Pattern4"/>
+                <h:outputText id="pattern4" value="#{resurrectRuleModelBean.pattern4}"/>
+
+                <h:outputLabel for="pattern5" value="Pattern5"/>
+                <h:outputText id="pattern5" value="#{resurrectRuleModelBean.pattern5}"/>
+
+                <h:outputLabel for="pattern6" value="Pattern6"/>
+                <h:outputText id="pattern6" value="#{resurrectRuleModelBean.pattern6}"/>
+
+                <h:outputLabel for="revisionComment" value="Revision Comment"/>
+                <h:inputTextarea id="revisionComment" value="#{resurrectRuleModelBean.revisionComment}"/>
+
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton action="#{resurrectRuleControllerBean.resurrectRule}" value="Resurrect"/>
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

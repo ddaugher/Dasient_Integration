@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE server
+    PUBLIC "-//JBoss//DTD MBean Service 5.0//EN"
+    "http://www.jboss.org/j2ee/dtd/jboss-service_5_0.dtd">
+<server>
+
+    <mbean code="org.jboss.jms.server.destination.QueueService"
+         name="jboss.messaging.destination:service=Queue,name=scanDomainQueue"
+         xmbean-dd="xmdesc/Queue-xmbean.xml">
+        <depends>jboss.messaging:service=PostOffice</depends>
+        <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+        <attribute name="RedeliveryDelay">10000</attribute>
+    </mbean>
+
+    <mbean code="org.jboss.jms.server.destination.QueueService"
+         name="jboss.messaging.destination:service=Queue,name=scanDomainAugmentedQueue"
+         xmbean-dd="xmdesc/Queue-xmbean.xml">
+        <depends>jboss.messaging:service=PostOffice</depends>
+        <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+        <attribute name="RedeliveryDelay">10000</attribute>
+    </mbean>
+
+    <mbean code="org.jboss.jms.server.destination.QueueService"
+         name="jboss.messaging.destination:service=Queue,name=dasientAckExpiryQueue"
+         xmbean-dd="xmdesc/Queue-xmbean.xml">
+        <depends>jboss.messaging:service=PostOffice</depends>
+        <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+        <attribute name="RedeliveryDelay">10000</attribute>
+    </mbean>
+
+    <mbean code="org.jboss.jms.server.destination.QueueService"
+         name="jboss.messaging.destination:service=Queue,name=dasientAckQueue"
+         xmbean-dd="xmdesc/Queue-xmbean.xml">
+        <depends>jboss.messaging:service=PostOffice</depends>
+        <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+        <attribute name="RedeliveryDelay">10000</attribute>
+		<attribute name="ExpiryQueue">
+			jboss.messaging.destination:service=Queue,name=dasientAckExpiryQueue
+        </attribute>
+    </mbean>
+
+    <mbean code="org.jboss.jms.server.destination.QueueService"
+         name="jboss.messaging.destination:service=Queue,name=dasientResultQueue"
+         xmbean-dd="xmdesc/Queue-xmbean.xml">
+        <depends>jboss.messaging:service=PostOffice</depends>
+        <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+        <attribute name="RedeliveryDelay">10000</attribute>
+    </mbean>
+
+    <mbean code="org.jboss.jms.server.destination.QueueService"
+         name="jboss.messaging.destination:service=Queue,name=processScanResultQueue"
+         xmbean-dd="xmdesc/Queue-xmbean.xml">
+        <depends>jboss.messaging:service=PostOffice</depends>
+        <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+        <attribute name="RedeliveryDelay">10000</attribute>
+    </mbean>
+
+	<mbean code="org.jboss.jms.server.destination.QueueService"
+         name="jboss.messaging.destination:service=Queue,name=domainCleanedQueue"
+         xmbean-dd="xmdesc/Queue-xmbean.xml">
+        <depends>jboss.messaging:service=PostOffice</depends>
+        <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+        <attribute name="RedeliveryDelay">10000</attribute>
+    </mbean>
+
+    <mbean code="org.jboss.jms.server.destination.QueueService"
+         name="jboss.messaging.destination:service=Queue,name=addDomainQueue"
+         xmbean-dd="xmdesc/Queue-xmbean.xml">
+        <depends>jboss.messaging:service=PostOffice</depends>
+        <depends optional-attribute-name="ServerPeer">jboss.messaging:service=ServerPeer</depends>
+        <attribute name="RedeliveryDelay">10000</attribute>
+    </mbean>
+
+</server>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="../template.xhtml">
+
+        <ui:define name="title">Dasient Integration - Clean Broker</ui:define>
+
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="error: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+
+            <h1><h:outputText value="Clean Broker Queue"/></h1>
+            <h:dataTable value="#{cleanBroker.cleanRequests}" var="item" rules="all">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Control Panel"/>
+                    </f:facet>
+                    <h:outputText value="#{item.controlPanel}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Web Server"/>
+                    </f:facet>
+                    <h:outputText value="#{item.webServer}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Username"/>
+                    </f:facet>
+                    <h:outputText value="#{item.username}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Domain Name"/>
+                    </f:facet>
+                    <h:outputText value="#{item.domainName}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h1><h:outputText value="Add Clean Request"/></h1>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Control Panel:"/>
+                    <h:inputText id="name" value="#{cleanBroker.newRequest.controlPanel}" title="Control Panel"/>
+                    <h:outputText value="Domain Name:"/>
+                    <h:inputText id="domainName" value="#{cleanBroker.newRequest.domainName}" title="Domain Name"/>
+                </h:panelGrid>
+                <h:commandButton action="#{cleanBroker.addRequest}" value="Submit"/>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:pretty="http://ocpsoft.com/prettyfaces"
+                template="../template.xhtml">
+
+    <ui:define name="body">
+        <h:outputText value="Revision: "/>
+        <h:outputText rendered="#{listRulesModelBean.revisionId != null}" value="#{listRulesModelBean.revisionId}"/>
+        <h:outputText rendered="#{listRulesModelBean.revisionId == null}" value="none"/>
+
+        <t:div>
+            <h:panelGroup rendered="#{listRulesModelBean.preceedingRevision != null}">
+                <pretty:link mappingId="#{listRulesModelBean.specificRevisionMappingId}" >
+                    <f:param value="#{listRulesModelBean.preceedingRevision}"/>
+                    <h:outputText value="Previous Revision"/>
+                </pretty:link>
+                <h:outputText value=" | "/>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{listRulesModelBean.succeedingRevision != null}">
+                <pretty:link mappingId="#{listRulesModelBean.specificRevisionMappingId}">
+                    <f:param value="#{listRulesModelBean.succeedingRevision}"/>
+                    <h:outputText value="Next Revision"/>
+                </pretty:link>
+                <h:outputText value=" | "/>
+            </h:panelGroup>
+
+            <pretty:link mappingId="#{listRulesModelBean.latestRevisionMappingId}">
+                <h:outputText value="Newest Revision"/>
+            </pretty:link>
+        </t:div>
+
+        <t:div>
+            <pretty:link mappingId="createRule">
+                <h:outputText value="Create Rule"/>
+            </pretty:link>
+        </t:div>
+
+        <h:dataTable value="#{listRulesModelBean.rules}" var="item" rules="all">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Rule ID"/>
+                </f:facet>
+                <h:outputText value="#{item.ruleId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Rule Description"/>
+                </f:facet>
+                <h:outputText value="#{item.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="# of matches last 30 days"/>
+                </f:facet>
+                <h:outputText value="#{item.noMatchesLast30days}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="-"/>
+                </f:facet>
+                <pretty:link mappingId="readRule">
+                    <f:param value="#{item.ruleId}"/>
+                    <h:outputText value="Show"/>
+                </pretty:link>
+                <h:outputText value=" | "/>
+                <pretty:link mappingId="updateRule">
+                    <f:param value="#{item.ruleId}"/>
+                    <h:outputText value="Update"/>
+                </pretty:link>
+                <h:outputText value=" | "/>
+                <pretty:link mappingId="ruleHistory">
+                    <f:param value="#{item.ruleId}"/>
+                    <h:outputText value="History"/>
+                </pretty:link>
+            </h:column>
+        </h:dataTable>
+
+        <t:div>
+            <pretty:link mappingId="listRevisions">
+                <h:outputText value="Revisions"/>
+            </pretty:link>
+            <h:outputText value=" | "/>
+            <pretty:link mappingId="listAuthors">
+                <h:outputText value="Authors"/>
+            </pretty:link>
+        </t:div>
+    </ui:define>
+
+</ui:composition>

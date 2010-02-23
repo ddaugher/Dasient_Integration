@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE server
+    PUBLIC "-//JBoss//DTD MBean Service 5.0//EN"
+    "http://www.jboss.org/j2ee/dtd/jboss-service_5_0.dtd">
+<server>
+   <mbean code="org.jboss.naming.JNDIBindingServiceMgr"
+         name="com.ecommerce.cas.client:service=JNDIBindingServiceMgr">
+      <attribute name="BindingsConfig" serialDataType="jbxb">
+         <jndi:bindings
+            xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:jndi="urn:jboss:jndi-binding-service:1.0"
+            xs:schemaLocation="urn:jboss:jndi-binding-service:1.0 resource:jndi-binding-service_1_0.xsd">
+
+            <jndi:binding name="cas/serverName">
+               <jndi:value type="java.lang.String">http://localhost:8080</jndi:value>
+            </jndi:binding>
+
+            <jndi:binding name="cas/casServerLoginUrl">
+               <jndi:value type="java.lang.String">http://localhost:8080/cas/login</jndi:value>
+            </jndi:binding>
+
+            <jndi:binding name="cas/casServerLogoutUrl">
+               <jndi:value type="java.lang.String">http://localhost:8080/cas/logout</jndi:value>
+            </jndi:binding>
+
+            <jndi:binding name="cas/casServerUrlPrefix">
+               <jndi:value type="java.lang.String">http://localhost:8080/cas</jndi:value>
+            </jndi:binding>
+
+         </jndi:bindings>
+      </attribute>
+      <depends>jboss:service=Naming</depends>
+   </mbean>
+</server>

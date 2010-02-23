@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<!-- By default, only the Clean and Build commands use this build script. -->
+<!-- Commands such as Run, Debug, and Test only use this build script if -->
+<!-- the Compile on Save feature is turned off for the project. -->
+<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
+<!-- in the project's Project Properties dialog box.-->
+<project name="DasientIntegration-ejb" default="default" basedir="." xmlns:ejbjarproject="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
+    <description>Builds, tests, and runs the project DasientIntegration-ejb.</description>
+    <import file="nbproject/build-impl.xml"/>
+    <!--
+
+    There exist several targets which are by default empty and which can be
+    used for execution of your tasks. These targets are usually executed
+    before and after some main targets. They are:
+
+      -pre-init:                 called before initialization of project properties
+      -post-init:                called after initialization of project properties
+      -pre-compile:              called before javac compilation
+      -post-compile:             called after javac compilation
+      -pre-compile-single:       called before javac compilation of single file
+      -post-compile-single:      called after javac compilation of single file
+      -pre-dist:                 called before archive building
+      -post-dist:                called after archive building
+      -post-clean:               called after cleaning build products
+      -pre-run-deploy:           called before deploying
+      -post-run-deploy:          called after deploying
+
+    (Targets beginning with '-' are not intended to be called on their own.)
+
+    Example of pluging an obfuscator after the compilation could look like
+
+        <target name="-post-compile">
+            <obfuscate>
+                <fileset dir="${build.classes.dir}"/>
+            </obfuscate>
+        </target>
+
+    For list of available properties check the imported
+    nbproject/build-impl.xml file.
+
+
+    Other way how to customize the build is by overriding existing main targets.
+    The target of interest are:
+
+      init-macrodef-javac:    defines macro for javac compilation
+      init-macrodef-debug:    defines macro for class debugging
+      do-dist:                archive building
+      run:                    execution of project
+      javadoc-build:          javadoc generation
+
+    Example of overriding the target for project execution could look like
+
+        <target name="run" depends="<PROJNAME>-impl.jar">
+            <exec dir="bin" executable="launcher.exe">
+                <arg file="${dist.jar}"/>
+            </exec>
+        </target>
+
+    Notice that overridden target depends on jar target and not only on
+    compile target as regular run target does. Again, for list of available
+    properties which you can use check the target you are overriding in
+    nbproject/build-impl.xml file.
+
+    -->
+
+    <!--
+
+    Targets for JAR deployment to JBoss:
+
+    $ ant -Djboss.deploy.dir=/path/to/jboss/server/default/deploy deploy
+    $ ant -Djboss.deploy.dir=/path/to/jboss/server/default/deploy undeploy
+
+    -->
+
+    <target name="deploy" depends="init,dist" description="Deploy archive to JBoss">
+        <fail unless="jboss.deploy.dir">jboss.deploy.dir is not configured</fail>
+        <copy file="${dist.jar}" todir="${jboss.deploy.dir}" preservelastmodified="true"/>
+    </target>
+    <target name="undeploy" depends="init,dist" description="Undeploy archive from JBoss">
+        <fail unless="jboss.deploy.dir">jboss.deploy.dir is not configured</fail>
+        <delete file="${jboss.deploy.dir}/${jar.name}"/>
+    </target>
+    <target name="-deploy-ant" if="deploy.ant.enabled">
+        <antcall target="deploy"/>
+    </target>
+    <target name="-undeploy-ant" if="deploy.ant.enabled">
+        <antcall target="undeploy"/>
+    </target>
+
+    <!--
+
+    Hooks into the "test" target to set up the embeddable openejb container
+    for use by unit tests.
+
+    -->
+
+    <target name="-pre-test-run" depends="init,setup-openejb-conf" if="have.tests">
+        <mkdir dir="${build.test.results.dir}"/>
+    </target>
+
+    <target name="-pre-test-run-single" depends="init,setup-openejb-conf" if="have.tests">
+        <mkdir dir="${build.test.results.dir}"/>
+    </target>
+
+    <target name="setup-openejb-conf" depends="init" if="have.tests">
+        <mkdir dir="${build.test.classes.dir}/META-INF"/>
+        <copy todir="${build.test.classes.dir}/META-INF">
+            <fileset dir="test/conf">
+                <include name="*.ejb-jar.xml"/>
+                <include name="*.openejb-jar.xml"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!--
+
+    Target to export the schema of the database into a DTD that can be used to
+    create data fixtures for tests that use DBUnit.
+
+    -->
+
+    <path id="hsqldb.jdbc.driver">
+        <path location="lib/hsqldb-2.0.0-rc8.jar"/>
+    </path>
+
+    <path id="dbunitlib">
+        <path location="lib/commons-collections-3.1.jar" />
+        <path location="lib/dbunit-2.4.7.jar"/>
+        <path location="lib/log4j-1.2.15.jar" />
+        <path location="lib/slf4j-api-1.5.10.jar"/>
+        <path location="lib/slf4j-log4j12-1.5.10.jar"/>
+        <path location="${basedir}" />
+    </path>
+
+    <taskdef name="dbunit"
+             classname="org.dbunit.ant.DbUnitTask"
+             classpathref="dbunitlib"/>
+
+    <path id="toolslib">
+        <path location="lib/antlr-2.7.6.jar" />
+        <path location="lib/bsh-2.0b1.jar" />
+        <path location="lib/commons-collections-3.1.jar" />
+        <path location="lib/commons-logging-api-1.1.1.jar" />
+        <path location="lib/dom4j-1.6.1.jar" />
+        <path location="lib/ejb3-persistence.jar" />
+        <path location="lib/freemarker.jar" />
+        <path location="lib/hibernate-annotations.jar" />
+        <path location="lib/hibernate-commons-annotations.jar" />
+        <path location="lib/hibernate-entitymanager.jar" />
+        <path location="lib/hibernate-tools.jar" />
+        <path location="lib/hibernate3.jar" />
+        <path location="lib/javassist-3.9.0.GA.jar" />
+        <path location="lib/jta-1.1.jar" />
+        <path location="lib/jtidy-r8-20060801.jar" />
+        <path location="lib/log4j-1.2.15.jar" />
+        <path location="lib/slf4j-api-1.5.10.jar" />
+        <path location="lib/slf4j-log4j12-1.5.10.jar" />
+        <path refid="hsqldb.jdbc.driver"/>
+        <path location="${basedir}" />
+    </path>
+
+    <taskdef name="hibernatetool"
+             classname="org.hibernate.tool.ant.HibernateToolTask"
+             classpathref="toolslib" />
+
+    <path id="xmltasklib">
+        <path location="lib/xmltask-1.16.jar"/>
+    </path>
+
+    <taskdef name="xmltask"
+             classname="com.oopsconsultancy.xmltask.ant.XmlTask"
+             classpathref="xmltasklib"/>
+
+    <target name="generate-dataset-dtd" depends="init" description="Generate DTD for DBUnit fixtures">
+        <property name="build.hsqldb.dir" value="${build.dir}/hsqldb"/>
+        <delete dir="${build.hsqldb.dir}"/>
+        <hibernatetool destdir="${build.hsqldb.dir}">
+            <jpaconfiguration/>
+            <classpath>
+                <path location="${reference.DasientIntegration-har.dist}"/>
+            </classpath>
+            <hbm2cfgxml ejb3="true"/>
+        </hibernatetool>
+        <xmltask preservetype="true" source="${build.hsqldb.dir}/hibernate.cfg.xml" dest="${build.hsqldb.dir}/hibernate-hsqldb.cfg.xml">
+            <remove path="//property[@name='hibernate.dialect']"/>
+            <remove path="//property[@name='hibernate.hbm2ddl.auto']"/>
+            <remove path="//property[@name='hibernate.connection.datasource']"/>
+            <remove path="//property[@name='hibernate.transaction.factory_class']"/>
+            <remove path="//property[@name='hibernate.connection.release_mode']"/>
+            <insert position="before" path="//session-factory/property[1]" expandproperties="true"><![CDATA[
+                <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+                <property name="hibernate.connection.url">jdbc:hsqldb:file:${basedir}/${build.hsqldb.dir}/schema;shutdown=true</property>
+                <property name="hibernate.connection.username">sa</property>
+                <property name="hibernate.connection.password"></property>
+                <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+                <property name="hibernate.hbm2ddl.auto">create</property>
+                <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+                <property name="hibernate.current_session_context_class">thread</property>
+                <property name="hibernate.connection.release_mode">on_close</property>
+            ]]></insert>
+        </xmltask>
+        <hibernatetool destdir="${build.hsqldb.dir}">
+            <annotationconfiguration configurationfile="${build.hsqldb.dir}/hibernate-hsqldb.cfg.xml"/>
+            <classpath>
+                <path location="${reference.DasientIntegration-har.dist}"/>
+            </classpath>
+            <hbm2ddl haltonerror="true"/>
+        </hibernatetool>
+        <dbunit driver="org.hsqldb.jdbcDriver"
+                url="jdbc:hsqldb:file:${basedir}/${build.hsqldb.dir}/schema;shutdown=true"
+                userid="sa"
+                password="">
+            <classpath>
+                <path refid="hsqldb.jdbc.driver"/>
+            </classpath>
+            <dbconfig>
+                <property name="escapePattern" value="&quot;?&quot;"/>
+                <property name="datatypeFactory" value="org.dbunit.ext.hsqldb.HsqldbDataTypeFactory"/>
+            </dbconfig>
+            <export dest="test/fixtures/dataset.dtd" format="dtd" ordered="true"/>
+        </dbunit>
+    </target>
+
+</project>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:pretty="http://ocpsoft.com/prettyfaces"
+                template="../template.xhtml">
+    
+    <ui:define name="body">
+        <h:messages showDetail="false" showSummary="true"/>
+
+        <h:form id="updateRuleForm">
+            <h:inputHidden id="ruleId" value="#{updateRuleModelBean.ruleId}"/>
+            <h:inputHidden id="revisionId" value="#{updateRuleModelBean.revisionId}"/>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel for="description" value="Description"/>
+                <h:inputTextarea id="description" value="#{updateRuleModelBean.description}" required="true"/>
+
+                <h:outputLabel for="action" value="Action"/>
+                <h:selectOneMenu id="action" value="#{updateRuleModelBean.action}" required="true">
+                    <t:selectItems value="#{ruleActionSupportBean.actions}" var="action" itemValue="#{action.id}" itemLabel="#{action.displayName}"/>
+                </h:selectOneMenu>
+
+                <h:outputLabel for="pattern1" value="Pattern1"/>
+                <h:inputText id="pattern1" value="#{updateRuleModelBean.pattern1}"/>
+
+                <h:outputLabel for="pattern2" value="Pattern2"/>
+                <h:inputText id="pattern2" value="#{updateRuleModelBean.pattern2}"/>
+
+                <h:outputLabel for="pattern3" value="Pattern3"/>
+                <h:inputText id="pattern3" value="#{updateRuleModelBean.pattern3}"/>
+
+                <h:outputLabel for="pattern4" value="Pattern4"/>
+                <h:inputText id="pattern4" value="#{updateRuleModelBean.pattern4}"/>
+
+                <h:outputLabel for="pattern5" value="Pattern5"/>
+                <h:inputText id="pattern5" value="#{updateRuleModelBean.pattern5}"/>
+
+                <h:outputLabel for="pattern6" value="Pattern6"/>
+                <h:inputText id="pattern6" value="#{updateRuleModelBean.pattern6}"/>
+
+                <h:outputLabel for="revisionComment" value="Revision Comment"/>
+                <h:inputTextarea id="revisionComment" value="#{updateRuleModelBean.revisionComment}"/>
+
+                <f:facet name="footer">
+                    <h:panelGroup style="display:block; text-align:center">
+                        <h:commandButton action="#{updateRuleControllerBean.updateRule}" value="Submit"/>
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

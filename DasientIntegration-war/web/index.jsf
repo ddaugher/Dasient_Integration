@@ -1,0 +1,4 @@
+<%--
+This file is used trick the application server to detect index.jsf as the
+welcome file so it serves index.jsp through the Java Server Faces servlet.
+--%>

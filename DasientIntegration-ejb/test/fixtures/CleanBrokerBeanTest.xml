@@ -1,0 +1,70 @@
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+
+    <CONTROL_PANEL
+        CONTROL_PANEL_ID="1"
+        NAME="cp.opentransfer.com"
+        DB_HOST="pgsqlcp.opentransfer.com"
+        SYNC_ENABLED="false"
+        LAST_SYNCED_DOMAIN_ID="0" />
+
+    <REVISION
+        REVISION_ID="1"
+        REVISION_AUTHOR="nobody@ecommerce.com"
+        REVISION_COMMENT=""
+        REVISION_TIME="2010-01-01 00:00:00"/>
+
+    <WEB_SERVER
+        WEB_SERVER_ID="1"
+        CONTROL_PANEL_ID="1"
+        NAME="web.opentransfer.com"
+        IP_ADDRESS="127.0.0.1"
+        LOGICAL_SERVER_ID="1"
+        CLEAN_SCHEDULE="0"
+        IS_DELETED="false" />
+
+    <WEB_SERVER
+        WEB_SERVER_ID="2"
+        CONTROL_PANEL_ID="1"
+        NAME="mismatch.opentransfer.com"
+        IP_ADDRESS="127.0.0.2"
+        LOGICAL_SERVER_ID="2"
+        CLEAN_SCHEDULE="0"
+        IS_DELETED="false" />
+
+    <SCAN_HISTORY
+        SCAN_HISTORY_ID="1"
+        CREATE_TMS="2010-01-01 00:00:00"
+        COMPLETED_AT="2010-01-01 00:00:00"
+        RAW_RESPONSE="unspecified"
+        HOSTNAME="test.com"
+        STATUS_URL="http://localhost/no-status"
+        STATUS="COMPLETED" />
+
+    <SCAN_HISTORY
+        SCAN_HISTORY_ID="2"
+        CREATE_TMS="2010-01-01 00:00:00"
+        COMPLETED_AT="2010-01-01 00:00:00"
+        RAW_RESPONSE="unspecified"
+        HOSTNAME="test.org"
+        STATUS_URL="http://localhost/no-status"
+        STATUS="COMPLETED" />
+
+    <DOMAIN
+        DOMAIN_ID="1"
+        CONTROL_PANEL_ID="1"
+        HSPHERE_ID="1"
+        NAME="test.com"
+        IS_DELETED="false"
+        NEXT_SCAN="2010-01-01 00:00:00"
+        UPDATE_TMS="2010-01-01 00:00:00"/>
+
+    <PENDING_CLEAN
+        PENDING_CLEAN_ID="1"
+        CONTROL_PANEL_ID="1"
+        WEB_SERVER_ID="1"
+        ACCOUNT_ID="1"
+        WEB_USERNAME="testuser"
+        SCHEDULE_TIME="2010-01-01 00:00:00" />
+
+</dataset>

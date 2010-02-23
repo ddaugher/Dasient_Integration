@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jboss-web PUBLIC
+    "-//JBoss//DTD Web Application 5.0//EN"
+    "http://www.jboss.org/j2ee/dtd/jboss-web_5_0.dtd">
+<jboss-web>
+    <class-loading>
+        <loader-repository>
+            com.ecommerce.dasient:loader=DasientIntegration.ear
+        </loader-repository>
+    </class-loading>
+    <security-domain>java:/jaas/JBossWS</security-domain>
+    <context-root>/dasient</context-root>
+
+    <!-- CAS configuration -->
+    <resource-env-ref>
+       <resource-env-ref-name>cas/serverName</resource-env-ref-name>
+       <jndi-name>cas/serverName</jndi-name>
+    </resource-env-ref>
+    <resource-env-ref>
+       <resource-env-ref-name>cas/casServerLoginUrl</resource-env-ref-name>
+       <jndi-name>cas/casServerLoginUrl</jndi-name>
+    </resource-env-ref>
+    <resource-env-ref>
+       <resource-env-ref-name>cas/casServerLogoutUrl</resource-env-ref-name>
+       <jndi-name>cas/casServerLogoutUrl</jndi-name>
+    </resource-env-ref>
+    <resource-env-ref>
+       <resource-env-ref-name>cas/casServerUrlPrefix</resource-env-ref-name>
+       <jndi-name>cas/casServerUrlPrefix</jndi-name>
+    </resource-env-ref>
+
+</jboss-web>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only">
+        <Node id="test/cleanBroker.jsp" x="376" y="124" zoom="true"/>
+    </Scope>
+    <Scope Scope="Project">
+        <Node id="faces/ruleEditor/readAuthor.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="faces/ruleEditor/createRule.xhtml" x="200" y="229" zoom="true"/>
+        <Node id="ui/listQueue.xhtml" x="399" y="100" zoom="true"/>
+        <Node id="faces/ruleEditor/ruleHistory.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="faces/ruleEditor/updateRule.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="index.jsf" x="629" y="103" zoom="false"/>
+        <Node id="faces/ruleEditor/listRevisions.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="faces/ruleEditor/readRevision.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="faces/cleanBroker/listQueue.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="faces/ruleEditor/listAuthors.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="faces/ruleEditor/deleteRule.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="faces/ruleEditor/resurrectRule.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="faces/template.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="index.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="faces/ruleEditor/readRule.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="faces/breadcrumb.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="faces/ruleEditor/listRules.xhtml" x="400" y="600" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations">
+        <Node id="test/cleanBroker.jsp" x="358" y="142" zoom="true"/>
+    </Scope>
+</Scene>

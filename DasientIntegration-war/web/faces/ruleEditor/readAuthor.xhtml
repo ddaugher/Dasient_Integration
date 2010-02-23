@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:pretty="http://ocpsoft.com/prettyfaces"
+                template="../template.xhtml">
+
+    <ui:define name="body">
+        <h:dataTable value="#{readAuthorModelBean.revisions}" var="revision" rules="all">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Revision ID"/>
+                </f:facet>
+                <h:outputText value="#{revision.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Time of change"/>
+                </f:facet>
+                <h:outputText value="#{revision.revisionTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Type of change"/>
+                </f:facet>
+                <h:outputText value="#{revision.ruleRevision.type.displayName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Affected Rule"/>
+                </f:facet>
+                <h:panelGroup>
+                    <h:outputText value="#{revision.ruleRevision.rule.id}"/>
+                </h:panelGroup>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Revision Comment"/>
+                </f:facet>
+                <h:outputText value="#{revision.revisionComment}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="-"/>
+                </f:facet>
+                <pretty:link mappingId="readRuleByRevision">
+                    <f:param value="#{revision.ruleRevision.rule.id}"/>
+                    <f:param value="#{revision.id}"/>
+                    <h:outputText value="Show"/>
+                </pretty:link>
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+
+</ui:composition>
